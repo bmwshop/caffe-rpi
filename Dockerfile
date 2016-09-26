@@ -20,7 +20,7 @@ RUN apt-get install -y libopencv-dev
 
 WORKDIR /
 
-git clone https://github.com/BVLC/caffe
+RUN git clone https://github.com/BVLC/caffe
 
 # prep for build
 WORKDIR /caffe
