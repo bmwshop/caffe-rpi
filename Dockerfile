@@ -4,12 +4,13 @@ RUN apt-get update && apt-get -y upgrade && apt-get install -y build-essential c
 RUN apt-get install -y --no-install-recommends libboost-all-dev
 RUN apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 
+
 # (Python general)
 RUN apt-get install -y python-pip
 
 # (Python 2.7 development files)
 RUN apt-get install -y python-dev
-RUN apt-get install -y python-numpy python-scipy
+RUN apt-get install -y python-numpy python-scipy python-matplotlib
 
 # (or, Python 3.5 development files)
 # RUN apt-get install -y python3-dev
@@ -41,5 +42,8 @@ RUN for req in $(cat requirements.txt); do pip install $req; done
 # build - using just 2 threads to prevent rpi CPU from overheating [!]
 WORKDIR /caffe
 RUN make all -j2
+RUN make pycaffe -j2
+# RUN make matcaffe -j2
 RUN make test -j2
+RUN make distribute
 
