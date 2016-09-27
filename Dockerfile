@@ -41,9 +41,9 @@ RUN for req in $(cat requirements.txt); do pip install $req; done
 
 # build - using just 2 threads to prevent rpi CPU from overheating [!]
 WORKDIR /caffe
-RUN make all -j2
-RUN make pycaffe -j2
+RUN make all -j3
+RUN make pycaffe -j3
 # RUN make matcaffe -j2
-RUN make test -j2
+RUN make test -j3
 RUN make distribute
 
